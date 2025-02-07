@@ -1,20 +1,19 @@
 def filter_by_state(
     data_logs: list[dict], state: str = "EXECUTED"
-) -> tuple[list, list]:
+) -> list[dict]:
     """Функция распределения по спискам"""
 
     new_list = []
-    new_list_2 = []
+
     for i in data_logs:
-        if i.get("state") == "EXECUTED":
+        if i.get("state") == state:
             new_list.append(i)
-        else:
-            new_list_2.append(i)
-    return new_list, new_list_2
+
+    return new_list
 
 
 if __name__ == "__main__":
-    list1, list2 = filter_by_state(
+    new_list_filter = filter_by_state(
         [
             {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
             {
@@ -34,8 +33,8 @@ if __name__ == "__main__":
             },
         ]
     )
-    print(list1)
-    print(list2)
+    print(new_list_filter)
+
 
 
 def sort_by_data(data_logs: list[dict], reverse: bool = True) -> list[dict]:
